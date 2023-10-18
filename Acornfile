@@ -1,6 +1,10 @@
 services: {
 	db: {
+<<<<<<< HEAD
 		image: "ghcr.io/acorn-io/mariadb:v10.#.#"
+=======
+		image: "ghcr.io/acorn-io/mariadb:v10.#.#-#"
+>>>>>>> f224b7f (Use latest mariadb)
 	}
 }
 
@@ -28,8 +32,14 @@ containers: {
 		}
 		consumes: ["db"]
 		ports: publish: "3000/http"
+		if args.dev {
+			command: ["npx", "nodemon", "server.js"]
+		}
 		dirs: {
 			"/usr/src/app/logs": "volume://log-data"
+			if args.dev {
+				"/usr/src/app": "./app"
+			}
 		}
 	}
 }
