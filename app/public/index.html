@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Entry</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        async function fetchStudents() {
+            try {
+                const res = await fetch('/students');
+                const students = await res.json();
+                const list = document.getElementById('studentsList');
+                list.innerHTML = "";  // Clear the current list
+                students.forEach(student => {
+                    // Adding a button with a trash icon and a click event listener
+                    list.innerHTML += `<li class="list-group-item">${student.name}, ${student.age}
+                        <button onclick="deleteStudent(${student.id})" class="btn btn-danger btn-sm float-right"><i class="fas fa-trash"></i></button>
+                    </li>`;
+                });
+            } catch (err) {
+                console.error('Error fetching students:', err);
+            }
+        }
+
+        async function deleteStudent(studentId) {
+            try {
+                await fetch(`/students/${studentId}`, {
+                    method: 'DELETE',
+                });
+                fetchStudents();  // Refresh the students list
+            } catch (err) {
+                console.error('Error deleting student:', err);
+            }
+        }
+
+        window.onload = fetchStudents;  // Fetch students when the window loads
+
+        async function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+            const formData = new FormData(event.target);
+            const newStudent = {
+                name: formData.get('name'),
+                age: formData.get('age')
+            };
+            try {
+                await fetch('/students', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newStudent)
+                });
+                fetchStudents();  // Refresh the students list
+                document.getElementById('studentForm').reset(); // Clear the form
+            } catch (err) {
+                console.error('Error submitting form:', err);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Form for entering new student -->
+        <div class="card">
+            <div class="card-header">
+                Enter New Student
+            </div>
+            <div class="card-body">
+                <form id="studentForm" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="text" class="form-control" id="age" name="age" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Students list -->
+        <div class="card mt-5">
+            <div class="card-header">
+                Students List
+            </div>
+            <ul class="list-group list-group-flush" id="studentsList">
+            </ul>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

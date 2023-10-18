@@ -1,0 +1,25 @@
+# Logs and databases
+logs
+*.log
+*.sqlite
+
+# Dependency directories
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Environment and config files
+.env
+*.config.js
+
+# Editor folders
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
