@@ -1,6 +1,6 @@
-services: { 
+services: {
 	db: {
-		image: "ghcr.io/acorn-io/mariadb:v1.#.#"
+		image: "ghcr.io/acorn-io/mariadb:v10.#.#"
 	}
 }
 
@@ -28,12 +28,12 @@ containers: {
 		}
 		consumes: ["db"]
 		ports: publish: "3000/http"
- 		dirs: {
-            "/usr/src/app/logs": "volume://log-data"
-        }		
+		dirs: {
+			"/usr/src/app/logs": "volume://log-data"
+		}
 	}
 }
 
 volumes: {
-    "log-data": {} 
+	"log-data": {}
 }
