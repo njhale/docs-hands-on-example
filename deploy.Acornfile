@@ -1,0 +1,5 @@
+acorns: students: {
+	image:               "ghcr.io/cloudnautique/students:prod"
+	autoUpgrade:         true
+	autoUpgradeInterval: "5m"
+}

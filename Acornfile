@@ -28,8 +28,9 @@ containers: {
 		}
 		consumes: ["db"]
 		ports: publish: "3000/http"
+		ports: dev:     "9229"
 		if args.dev {
-			command: ["npx", "nodemon", "server.js"]
+			command: ["npx", "nodemon", "--inspect=0.0.0.0:9229", "server.js"]
 		}
 		dirs: {
 			"/usr/src/app/logs": "volume://log-data"
