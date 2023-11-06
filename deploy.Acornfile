@@ -1,5 +1,6 @@
 acorns: students: {
-	image:               "ghcr.io/acorn-io/docs-hands-on-example:prod"
+	image:               "ghcr.io/njhale/docs-hands-on-example:prod"
 	autoUpgrade:         true
 	autoUpgradeInterval: "5m"
 }
+

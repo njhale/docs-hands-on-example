@@ -7,12 +7,12 @@ This repo contains the code for the hands on example in the Acorn docs.
 
 ## Running the example
 
-[![Run in Acorn](https://acorn.io/v1-ui/run/badge?image=ghcr.io+acorn-io+docs-hands-on-example:prod&ref=cloudnautique)](https://acorn.io/run/ghcr.io/acorn-io/docs-hands-on-example:prod?ref=cloudnautique)
+[![Run in Acorn](https://acorn.io/v1-ui/run/badge?image=ghcr.io+njhale+docs-hands-on-example:prod&ref=njhale)](https://acorn.io/run/ghcr.io/njhale/docs-hands-on-example:prod?ref=njhale)
 
 To run from source or in Dev mode.
 
 ```shell
-git clone https://github.com/acorn-io/docs-hands-on-example.git
+git clone https://github.com/njhale/docs-hands-on-example.git
 cd docs-hands-on-example
 acorn run -n school
 ```
