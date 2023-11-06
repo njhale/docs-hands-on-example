@@ -1,3 +1,5 @@
+name: "Student App Example"
+
 services: {
 	db: {
 		image: "ghcr.io/acorn-io/mariadb:v10.#.#-#"
