@@ -29,5 +29,5 @@ jobs:
         run: |
           TAG=${GITHUB_REF#refs/*/}
           USER=${{ github.repository_owner }}
-          REPO=${{ github.repository }}
+          REPO=${{ github.event.repository.name }}
           acorn build --platform linux/amd64 --platform linux/arm64 --push -t ghcr.io/$USER/$REPO:$TAG .
